@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function (\App\Services\UrlChecker $urlChecker) {
+    $urls = \App\Models\Url::all();
+    $urls->each(function($url) {
+        event(new \App\Events\CheckSite($url->url));
+    });
+});
