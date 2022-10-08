@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\CheckSite;
+use App\Events\CheckUrl;
 use App\Services\UrlChecker;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CheckSiteListener implements ShouldQueue
+class CheckUrlListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,12 +21,12 @@ class CheckSiteListener implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param CheckSite $event
+     * @param CheckUrl $event
      * @return void\
      */
-    public function handle(CheckSite $event)
+    public function handle(CheckUrl $event)
     {
-        logger($event->url);
+        logger('Listen: ' . $event->url->url);
         $this->urlChecker->getStatus($event->url);
     }
 }

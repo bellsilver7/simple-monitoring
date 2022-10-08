@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('urls', function (Blueprint $table) {
+        Schema::create('url_failures', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->boolean('active')->default(true);
-            $table->boolean('failing')->default(false);
+            $table->foreignIdFor(\App\Models\Url::class)->index();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('urls');
+        Schema::dropIfExists('url_failures');
     }
 };

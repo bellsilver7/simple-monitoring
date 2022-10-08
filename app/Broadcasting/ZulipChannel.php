@@ -4,6 +4,7 @@ namespace App\Broadcasting;
 
 use App\Models\User;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Http;
 
 class ZulipChannel
 {
@@ -30,6 +31,22 @@ class ZulipChannel
 
     public function send($notifiable, Notification $notification)
     {
-        logger($notifiable);
+        $message = $notification->toZulip($notifiable);
+
+        logger($message);
+        Http::withOptions([
+            'base_url' => config('services.zulip.url') . '/api/v1/messages',
+        ])
+            ->withBasicAuth(
+                config('services.zulip.user'),
+                config('services.zulip.key')
+            )
+            ->asForm()
+        ->post('/messages', [
+            'type' => 'stream',
+            'to' => 'Perfectionist',
+            'topic' => 'stream events',
+            'content' => $message['message'],
+        ]);
     }
 }

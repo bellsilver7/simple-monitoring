@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
         Url::create(['url' => 'https://www.amitavroy.com']);
+        Url::create(['url' => 'https://www.amitavroy.com/test']);
         Url::create(['url' => 'https://focalworks.in']);
     }
 }

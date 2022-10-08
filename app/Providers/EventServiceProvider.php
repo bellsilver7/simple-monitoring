@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\CheckSite;
-use App\Listeners\CheckSiteListener;
+use App\Events\CheckUrl;
+use App\Listeners\CheckUrlListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,8 +20,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CheckSite::class => [
-            CheckSiteListener::class
+        CheckUrl::class => [
+            CheckUrlListener::class
         ]
     ];
 

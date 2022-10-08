@@ -20,6 +20,6 @@ Route::get('/', function () {
 Route::get('/test', function (\App\Services\UrlChecker $urlChecker) {
     $urls = \App\Models\Url::all();
     $urls->each(function($url) {
-        event(new \App\Events\CheckSite($url->url));
+        event(new \App\Events\CheckUrl($url));
     });
 });
