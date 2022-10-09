@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,22 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Route::get('/url/re-activate/{url}', function (Illuminate\Http\Request $request, App\Models\Url $url) {
-    if (!$request->hasValidSignature()) {
-        abort(401);
-    }
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-    $url->failing = false;
-    $url->save();
-
-    return redirect('/');
-})->name('url.re-activate');
-Route::get('/test', function (App\Services\UrlChecker $urlChecker) {
-    $urls = \App\Models\Url::all();
-    $urls->each(function ($url) {
-        event(new \App\Events\CheckUrl($url));
-    });
-});
+require __DIR__.'/auth.php';
