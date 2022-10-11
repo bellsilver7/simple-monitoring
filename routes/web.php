@@ -24,9 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/links', function () {
-    return Inertia::render('Links/Index');
-});
+Route::get('/links', \App\Http\Controllers\LinksController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
