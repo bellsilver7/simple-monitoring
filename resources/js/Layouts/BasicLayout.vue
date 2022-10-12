@@ -2,9 +2,17 @@
 import {Head} from "@inertiajs/inertia-vue3";
 import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 
-const links = [
-    {title: "Home", href: "/#"},
-    {title: "Links", href: "/links"},
+const items = [
+    {
+        text: 'Home',
+        disabled: false,
+        href: '/',
+    },
+    {
+        text: 'Links',
+        disabled: true,
+        href: '',
+    },
 ];
 </script>
 <template>
@@ -54,7 +62,7 @@ const links = [
             </div>
         </div>
         <div class="mt-4">
-            <Breadcrumbs :links="links"/>
+            <Breadcrumbs :items="items"/>
         </div>
         <div class="mt-4">
             <slot/>
