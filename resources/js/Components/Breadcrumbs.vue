@@ -6,7 +6,7 @@ defineProps({
 });
 </script>
 <template>
-  <ol class="flex text-gray-700 bg-gray-100 rounded py-2 px-2">
+  <ol class="flex text-gray-700 rounded py-2 px-2">
     <template v-for="(item, index) in items">
       <li class="px-2" :class="{ 'text-indigo-600': item.disabled }">
         <template v-if="item.href !== ''">
