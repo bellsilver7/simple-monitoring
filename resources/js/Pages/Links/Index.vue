@@ -1,11 +1,24 @@
 <script setup>
 import BasicLayout from "@/Layouts/BasicLayout.vue";
 
+const breadcrumbs = [
+  {
+    text: "Home",
+    disabled: false,
+    href: "/",
+  },
+  {
+    text: "Links",
+    disabled: true,
+    href: "",
+  },
+];
+
 const props = defineProps(["urls"]);
 const urls = props.urls.data;
 </script>
 <template>
-  <BasicLayout>
+  <BasicLayout :breadcrumbs="breadcrumbs">
     <h1>My List</h1>
     <div class="overflow-x-auto">
       <table class="table w-full">
