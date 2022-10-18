@@ -25,10 +25,12 @@ const form = useForm({
 });
 
 const submit = () => {
-  console.log("submit");
-  console.log(form);
   form.post("/links");
 };
+
+defineProps({
+  errors: Object,
+});
 </script>
 <template>
   <BasicLayout :breadcrumbs="breadcrumbs">
@@ -45,6 +47,7 @@ const submit = () => {
               name="url"
               required
             />
+            <div v-if="errors.url" class="text-red-600">{{ errors.url }}</div>
             <div class="card-actions">
               <button class="btn btn-primary btn-sm">SAVE</button>
             </div>
