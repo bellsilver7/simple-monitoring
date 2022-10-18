@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from "@inertiajs/inertia-vue3";
 import BasicLayout from "@/Layouts/BasicLayout.vue";
 
 const breadcrumbs = [
@@ -19,7 +20,16 @@ const urls = props.urls.data;
 </script>
 <template>
   <BasicLayout :breadcrumbs="breadcrumbs">
-    <h1>My List</h1>
+    <div class="flex justify-between mb-4">
+      <h1 class="text-xl font-extrabold">My List</h1>
+      <Link href="/links/create">
+        <button
+          class="bg-indigo-600 hover:bg-indigo-800 p-2 rounded text-white text-xs font-semibold"
+        >
+          ADD NEW URL
+        </button>
+      </Link>
+    </div>
     <div class="overflow-x-auto">
       <table class="table w-full">
         <!-- head -->

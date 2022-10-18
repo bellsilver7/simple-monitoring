@@ -16,18 +16,20 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+  return Inertia::render('Welcome', [
+    'canLogin' => Route::has('login'),
+    'canRegister' => Route::has('register'),
+    'laravelVersion' => Application::VERSION,
+    'phpVersion' => PHP_VERSION,
+  ]);
 });
 
-Route::get('/links', \App\Http\Controllers\LinksController::class);
+Route::get('/links', [\App\Http\Controllers\LinksController::class, 'index'])->name('links');
+Route::get('/links/create', [\App\Http\Controllers\LinksController::class, 'create']);
+Route::post('/links', [\App\Http\Controllers\LinksController::class, 'store']);
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+  return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
