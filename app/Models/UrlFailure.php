@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class UrlFailure extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'url_id'
-    ];
+  protected $fillable = [
+    'url_id'
+  ];
+
+  public function url()
+  {
+    return $this->belongsTo(Url::class);
+  }
 }
