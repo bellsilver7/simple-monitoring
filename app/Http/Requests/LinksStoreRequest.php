@@ -24,7 +24,7 @@ class LinksStoreRequest extends FormRequest
   public function rules()
   {
     return [
-      'url' => ['required', 'string', 'url'],
+      'url' => ['required', 'url', 'unique:urls,url'],
     ];
   }
 }

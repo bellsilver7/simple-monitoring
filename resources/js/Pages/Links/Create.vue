@@ -42,7 +42,7 @@ defineProps({
             <input
               v-model="form.url"
               type="text"
-              placeholder="Type here"
+              placeholder="Enter the URL to add"
               class="input input-bordered input-sm w-full max-w-xs"
               name="url"
               required
