@@ -31,22 +31,22 @@ class ZulipChannel
 
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toZulip($notifiable);
+      $message = $notification->toZulip($notifiable);
 
-        logger($message);
-        Http::withOptions([
-            'base_url' => config('services.zulip.url') . '/api/v1/messages',
-        ])
-            ->withBasicAuth(
-                config('services.zulip.user'),
-                config('services.zulip.key')
-            )
-            ->asForm()
-        ->post('/messages', [
-            'type' => 'stream',
-            'to' => 'Perfectionist',
-            'topic' => 'stream events',
-            'content' => $message['message'],
-        ]);
+      logger($message);
+//        Http::withOptions([
+//            'base_url' => config('services.zulip.url') . '/api/v1/messages',
+//        ])
+//            ->withBasicAuth(
+//                config('services.zulip.user'),
+//                config('services.zulip.key')
+//            )
+//            ->asForm()
+//        ->post('/messages', [
+//            'type' => 'stream',
+//            'to' => 'Perfectionist',
+//            'topic' => 'stream events',
+//            'content' => $message['message'],
+//        ]);
     }
 }
