@@ -29,4 +29,10 @@ class LinksController extends Controller
 
     return Redirect::route('links');
   }
+
+  public function delete(Url $url)
+  {
+    $url->delete();
+    return redirect()->route('links')->with('message', 'Post Delete Successfully');
+  }
 }
