@@ -43,8 +43,9 @@ Route::get('/test', function (\App\Services\UrlChecker $urlChecker) {
 });
 
 Route::get('/links', [\App\Http\Controllers\LinksController::class, 'index'])->name('links');
-Route::get('/links/create', [\App\Http\Controllers\LinksController::class, 'create']);
-Route::post('/links', [\App\Http\Controllers\LinksController::class, 'store']);
+Route::get('/links/create', [\App\Http\Controllers\LinksController::class, 'create'])->name('links.create');
+Route::post('/links', [\App\Http\Controllers\LinksController::class, 'store'])->name('links.store');
+Route::delete('/links/{url}', [\App\Http\Controllers\LinksController::class, 'destroy'])->name('links.destroy');
 
 Route::get('/dashboard', function () {
   return Inertia::render('Dashboard');
