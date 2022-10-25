@@ -3,9 +3,6 @@ defineProps({
   id: String,
   header: String,
   desc: String,
-  // entity: String,
-  // onConfirm: String,
-  // buttonText: String,
 });
 </script>
 
@@ -18,7 +15,13 @@ defineProps({
       {{ desc }}
       <div class="modal-action">
         <label :for="id" class="btn btn-ghost btn-outline">Cancel</label>
-        <label for="" class="btn btn-primary">Submit</label>
+        <label
+          :for="id"
+          class="btn btn-primary"
+          @click="this.$emit('onConfirm')"
+        >
+          Submit
+        </label>
       </div>
     </div>
   </div>
